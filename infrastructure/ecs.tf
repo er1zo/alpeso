@@ -32,8 +32,8 @@ resource "aws_ecs_task_definition" "alpeso_task" {
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
-  cpu                      = 256  # 0.25 vCPU
-  memory                   = 512  # 512 MiB memory
+  cpu                      = 256 # 0.25 vCPU
+  memory                   = 512 # 512 MiB memory
 
   container_definitions = jsonencode([
     {
@@ -81,10 +81,10 @@ resource "aws_ecs_service" "alpeso_fargate_service" {
   task_definition = aws_ecs_task_definition.alpeso_task.arn
   desired_count   = 1
   launch_type     = "FARGATE"
-  
+
   network_configuration {
-    subnets         = ["subnet-08c08da8a0cb3e113", "subnet-09641e0cb2404b400"]  # Update with your public subnets
-    security_groups = [aws_security_group.fargate_sg.id]
+    subnets          = ["subnet-08c08da8a0cb3e113", "subnet-09641e0cb2404b400"] # Update with your public subnets
+    security_groups  = [aws_security_group.fargate_sg.id]
     assign_public_ip = true
   }
 }
