@@ -1,5 +1,5 @@
 # Use the official PHP image
-FROM php:7.4-cli
+FROM php:8.3-cli
 
 # Set the working directory in the container
 WORKDIR /var/www/html
